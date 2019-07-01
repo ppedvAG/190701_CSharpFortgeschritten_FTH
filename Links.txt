@@ -2,3 +2,4 @@ Nützliche Links:
 
 
 https://referencesource.microsoft.com/
+https://davidzych.com/abusing-emoji-in-windows/
