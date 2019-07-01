@@ -18,7 +18,6 @@ namespace Generics_Demo
         private int position;
         private T[] data;
 
-
         public void Push(T item)
         {
             if (data.Length == position)
@@ -43,9 +42,18 @@ namespace Generics_Demo
             return result;
         }
 
-        // Push -> speichern
-        // Pop -> herausnehmen
+        // indexer + TAB + TAB
 
-        // optional: Find
+        public T this[int index]
+        {
+            get
+            {
+                return data[index];
+            }
+            set
+            {
+                data[index] = value;
+            }
+        }
     }
 }

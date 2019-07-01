@@ -47,16 +47,44 @@ namespace Generics_Demo
             // Console.WriteLine(os.Pop()); // Exception
             #endregion
 
-            GenerischerStack<string> stringStack = new GenerischerStack<string>();
+            #region Generischer Stack
+            //GenerischerStack<string> stringStack = new GenerischerStack<string>();
 
-            stringStack.Push("Hallo Welt");
-            //stringStack.Push(12);
-            Console.WriteLine(stringStack.Pop());
+            //stringStack.Push("Hallo Welt");
+            ////stringStack.Push(12);
+            //Console.WriteLine(stringStack.Pop());
 
-            MachEtwas("Hallo Welt - Methode");
-            MachEtwas(123);
-            MachEtwas(stringStack);
+            //MachEtwas("Hallo Welt - Methode");
+            //MachEtwas(123);
+            //MachEtwas(stringStack); 
+            #endregion
 
+            //Dictionary<string, string> EU = new Dictionary<string, string>();
+            //EU.Add("Österreich", "Wien");
+            //EU.Add("Deutschland", "Berlin");
+            //EU.Add("Tschechei", "Wien");
+            //EU.Add("Slowakei", "Wien");
+            //EU.Add("Ungarn", "Wien");
+            //EU.Add("Polen", "Warschau");
+            //EU.Add("Frankreich", "Paris");
+            //EU.Add("Belgien", "Brüssel");
+            //EU.Add("Italien", "Rom");
+
+            //if(EU.ContainsKey("Großbritannien"))
+            //    Console.WriteLine(EU["Großbritannien"]);
+            //else
+            //    Console.WriteLine("Gibts nimma");
+
+
+            GenerischerStack<string> meinStack = new GenerischerStack<string>();
+
+            meinStack.Push("Hallo");
+            meinStack.Push("Welt");
+            meinStack.Push("!");
+
+            meinStack[0] = "Auf Wiedersehen";
+
+            Console.WriteLine(meinStack[0]);
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
