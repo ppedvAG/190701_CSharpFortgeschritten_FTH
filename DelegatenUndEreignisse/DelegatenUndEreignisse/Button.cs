@@ -8,12 +8,28 @@ namespace DelegatenUndEreignisse
 {
     class Button
     {
-        public EventHandler ClickEventHandler;
+        // Variante "Lang"
+        //private EventHandler clickEventHandler;
+        //public event EventHandler ClickEvent
+        //{
+        //    add
+        //    {
+        //        clickEventHandler += value;
+        //    }
+        //    remove
+        //    {
+        //        clickEventHandler -= value;
+        //    }
+        //}
+
+        // Variante "kurz"
+        public event EventHandler ClickEvent;
+
 
         public void Click()
         {
-            if(ClickEventHandler != null)
-                ClickEventHandler(this,EventArgs.Empty);
+            if(ClickEvent != null)
+                ClickEvent(this,EventArgs.Empty);
         }
     }
 }

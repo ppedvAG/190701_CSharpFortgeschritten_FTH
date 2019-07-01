@@ -80,24 +80,24 @@ namespace DelegatenUndEreignisse
 
 
             Button b1 = new Button();
-            b1.ClickEventHandler = MeinButton_Click;
+            b1.ClickEvent += MeinButton_Click;
 
-            b1.ClickEventHandler += Logger;
-
-            b1.Click();
-            b1.Click();
-
-            b1.ClickEventHandler = null;        // absolut verboten !
+            b1.ClickEvent += Logger;
 
             b1.Click();
+            b1.Click();
 
-            b1.ClickEventHandler -= Logger;
+            // b1.ClickEvent = null;        // absolut verboten !
+
+            b1.Click();
+
+            b1.ClickEvent -= Logger;
 
             b1.Click();
             b1.Click();
 
             // Null Conditional Operator, C# 6
-            b1.ClickEventHandler?.Invoke(null,null);        // verboten
+           //  b1.ClickEvent?.Invoke(null,null);        // verboten
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
