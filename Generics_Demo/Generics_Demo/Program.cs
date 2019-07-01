@@ -28,26 +28,44 @@ namespace Generics_Demo
             //Console.WriteLine(zahl2); 
             #endregion
 
+            #region ObjectStack
+            //ObjectStack os = new ObjectStack();
 
-            ObjectStack os = new ObjectStack();
+            //os.Push("12");
+            //os.Push(12345);
+            //os.Push(12.5);
+            //os.Push("Hallo Welt");
 
-            os.Push("12");
-            os.Push(12345);
-            os.Push(12.5);
-            os.Push("Hallo Welt");
+            //os.Push("größer !!!");
 
-            os.Push("größer !!!");
-
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
 
             // Console.WriteLine(os.Pop()); // Exception
+            #endregion
+
+            GenerischerStack<string> stringStack = new GenerischerStack<string>();
+
+            stringStack.Push("Hallo Welt");
+            //stringStack.Push(12);
+            Console.WriteLine(stringStack.Pop());
+
+            MachEtwas("Hallo Welt - Methode");
+            MachEtwas(123);
+            MachEtwas(stringStack);
+
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
+        }
+
+
+        public static void MachEtwas<T>(T item)
+        {
+            Console.WriteLine($"Ich mache etwas mit : {item}");
         }
     }
 }
