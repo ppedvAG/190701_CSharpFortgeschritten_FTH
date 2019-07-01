@@ -32,7 +32,7 @@ namespace Generics_Demo
                 if (throwExceptionIfKeyExists)
                     throw new ArgumentException("Key bereits vorhanden !");
                 else
-                    return false; // hat nicht funtkioniert
+                    return false; // hat nicht funktioniert
             }
 
             if (position == keys.Length)
@@ -51,7 +51,7 @@ namespace Generics_Demo
             values[position] = Value;
 
             position++;
-            return true; // hat funtkioniert
+            return true; // hat funktioniert
         }
 
         public TValue this[TKey key]
