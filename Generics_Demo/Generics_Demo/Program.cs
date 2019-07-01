@@ -86,6 +86,17 @@ namespace Generics_Demo
 
             Console.WriteLine(meinStack[0]);
 
+            // Übung:
+            // Eigenes Dictionary erfinden:
+            // class MeinDictionary<TKey,TValue>
+            // -> Constraints: TKey muss ein Wertetyp sein
+            // ->              TValue muss IDisposable (z.B. Person erfinden, die IDisposable ist)
+            // Features:
+            // Add(TKey key, TValue value)
+            // indexer 
+            // Intern: tkey[] und tvalue[]
+
+
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
         }
