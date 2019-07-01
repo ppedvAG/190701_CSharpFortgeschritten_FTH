@@ -3,3 +3,4 @@ Nützliche Links:
 
 https://referencesource.microsoft.com/
 https://davidzych.com/abusing-emoji-in-windows/
+https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b
