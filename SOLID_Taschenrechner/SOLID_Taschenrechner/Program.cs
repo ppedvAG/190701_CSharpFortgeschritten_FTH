@@ -20,24 +20,9 @@ namespace SOLID_Taschenrechner
         }
     }
 
-    public struct Formel
-    {
-        public Formel(int operand1, int operand2, string rechenoperator)
-        {
-            Operand1 = operand1;
-            Operand2 = operand2;
-            Rechenoperator = rechenoperator;
-        }
 
-        public int Operand1 { get; set; }
-        public int Operand2 { get; set; }
-        public string Rechenoperator { get; set; }
-    }
 
-    public interface IParser
-    {
-        Formel Parse(string input);
-    }
+
 
     public class StringSplitParser : IParser
     {
@@ -74,10 +59,6 @@ namespace SOLID_Taschenrechner
         }
     }
 
-    public interface IRechner
-    {
-        int Berechne(Formel formel);
-    }
     public class SimplerRechner : IRechner
     {
         public int Berechne(Formel formel)
@@ -109,11 +90,6 @@ namespace SOLID_Taschenrechner
         }
     }
 
-    public interface IRechenart
-    {
-        string Rechenoperator { get; }
-        int Berechne(params int[] operanden);
-    }
     public class Addition : IRechenart
     {
         public string Rechenoperator => "+";
