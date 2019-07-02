@@ -38,14 +38,35 @@ namespace Thread_Demo
             // ThreadPool.QueueUserWorkItem(Zeichen,'@');
             #endregion
 
-            Console.OutputEncoding = Encoding.Unicode;
+            #region Monitor und Lock
+            //Console.OutputEncoding = Encoding.Unicode;
 
-            Konto k1 = new Konto(10_000);
+            //Konto k1 = new Konto(10_000);
 
-            for (int i = 0; i < 10; i++)
-            {
-                ThreadPool.QueueUserWorkItem(ZufälligesKontoUpdate, k1);
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    ThreadPool.QueueUserWorkItem(ZufälligesKontoUpdate, k1);
+            //} 
+            #endregion
+
+            #region Mutex
+            //Mutex mutex = new Mutex(false, "MeinMutex1234");
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    mutex.WaitOne();
+
+            //    Thread.Sleep(100);
+            //    Console.WriteLine(i);
+
+            //    mutex.ReleaseMutex();
+            //} 
+            #endregion
+
+            SemaphoreZähler zähler = new SemaphoreZähler();
+
+            for (int i = 0; i < 500; i++)
+                new Thread(zähler.MachWas).Start();
 
 
             Console.WriteLine("---ENDE---");
