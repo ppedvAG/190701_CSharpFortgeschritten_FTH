@@ -38,8 +38,31 @@ namespace Thread_Demo
             // ThreadPool.QueueUserWorkItem(Zeichen,'@');
             #endregion
 
+            Console.OutputEncoding = Encoding.Unicode;
+
+            Konto k1 = new Konto(10_000);
+
+            for (int i = 0; i < 10; i++)
+            {
+                ThreadPool.QueueUserWorkItem(ZufälligesKontoUpdate, k1);
+            }
+
+
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
+        }
+
+        static void ZufälligesKontoUpdate(object item)
+        {
+            Konto currentKonto = (Konto)item;
+            Random generator = new Random(Thread.CurrentThread.ManagedThreadId);
+            for (int i = 0; i < 10; i++)
+            {
+                if (generator.Next(0, 2) % 2 == 0)
+                    currentKonto.Einzahlen(generator.Next(0, 1000));
+                else
+                    currentKonto.Abheben(generator.Next(0, 1000));
+            }
         }
 
         private static void Zeichen(object arg)
