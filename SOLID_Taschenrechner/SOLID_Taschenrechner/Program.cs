@@ -1,8 +1,10 @@
-﻿using ppedv.SOLID_Taschenrechner.Logik;
-using ppedv.SOLID_Taschenrechner.Logik.FreeFeatures;
-using ppedv.SOLID_Taschenrechner.Logik.PaidFeatures;
+﻿using ppedv.SOLID_Taschenrechner.Domain.Interfaces;
+using ppedv.SOLID_Taschenrechner.Logik;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,12 +14,37 @@ namespace SOLID_Taschenrechner
     class Program
     {
         // Bootstrapping => Alles konfigurieren und initialisieren
+        // IoC - Container (Unity, Autofac, CastleWindsor)
         static void Main(string[] args)
         {
-            // IoC - Container (Unity, Autofac, CastleWindsor)
+            // Alle Assemblies im Plugin-Ordner laden
+            if(! Directory.Exists(@".\Plugins"))
+                Directory.CreateDirectory(@".\Plugins");
+
+            foreach (string file in Directory.GetFiles(@".\Plugins").Where(x => (Path.GetExtension(x) == ".dll" || Path.GetExtension(x) == ".exe")))
+            {
+                Assembly.LoadFrom(file); // jede .dll laden
+            }
+
+            var alleRechenarten = AppDomain.CurrentDomain.GetAssemblies()
+                                                         .Where(x => x.FullName.StartsWith("ppedv.SOLID_Taschenrechner.Logik"))
+                                                         .SelectMany(x => x.GetTypes())
+                                                         .Where(x => typeof(IRechenart).IsAssignableFrom(x) &&
+                                                                     x.IsInterface == false && x.IsAbstract == false)
+                                                         .Select(x => (IRechenart)Activator.CreateInstance(x))
+                                                         .ToArray();
+
+
+            if(alleRechenarten.Length == 0)
+            {
+                Console.WriteLine(@"Keine Rechnenarten im Ordner '\bin\debug\Plugins' gefunden");
+                Console.ReadKey();
+                return;
+            }
+
+            var rechner = new ModulRechner(alleRechenarten);
 
             var parser = new RegexParser();
-            var rechner = new ModulRechner(new Addition(), new Subtraktion(), new Multiplikation(), new Division()) ;
             new KonsolenUI(parser,rechner).Start();
 
             // Übung:
