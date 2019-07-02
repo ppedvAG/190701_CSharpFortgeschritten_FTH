@@ -59,6 +59,10 @@
       <Project>{2CBCFFDF-304E-4530-866E-F96E4DAFEB37}</Project>
       <Name>ppedv.SOLID_Taschenrechner.Logik.FreeFeatures</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ppedv.SOLID_Taschenrechner.Logik.PaidFeatures\ppedv.SOLID_Taschenrechner.Logik.PaidFeatures.csproj">
+      <Project>{C78A020E-F508-4F16-8D7C-93A81929E310}</Project>
+      <Name>ppedv.SOLID_Taschenrechner.Logik.PaidFeatures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ppedv.SOLID_Taschenrechner.Logik\ppedv.SOLID_Taschenrechner.Logik.csproj">
       <Project>{E4AD78B6-136F-4B2A-9CDF-300D51FD5673}</Project>
       <Name>ppedv.SOLID_Taschenrechner.Logik</Name>

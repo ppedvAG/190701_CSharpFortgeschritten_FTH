@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.SOLID_Taschenrechner.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.SOLID_Taschenrechner.Logik.FreeFeatures", "ppedv.SOLID_Taschenrechner.Logik.FreeFeatures\ppedv.SOLID_Taschenrechner.Logik.FreeFeatures.csproj", "{2CBCFFDF-304E-4530-866E-F96E4DAFEB37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.SOLID_Taschenrechner.Logik.PaidFeatures", "ppedv.SOLID_Taschenrechner.Logik.PaidFeatures\ppedv.SOLID_Taschenrechner.Logik.PaidFeatures.csproj", "{C78A020E-F508-4F16-8D7C-93A81929E310}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2CBCFFDF-304E-4530-866E-F96E4DAFEB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CBCFFDF-304E-4530-866E-F96E4DAFEB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CBCFFDF-304E-4530-866E-F96E4DAFEB37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C78A020E-F508-4F16-8D7C-93A81929E310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78A020E-F508-4F16-8D7C-93A81929E310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78A020E-F508-4F16-8D7C-93A81929E310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78A020E-F508-4F16-8D7C-93A81929E310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
