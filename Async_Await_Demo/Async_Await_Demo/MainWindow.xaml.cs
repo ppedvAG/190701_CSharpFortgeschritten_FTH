@@ -24,23 +24,33 @@ namespace Async_Await_Demo
         public MainWindow()
         {
             InitializeComponent();
-            TaskBeendetEvent += Callback;
         }
-
-        private void Callback(object sender, EventArgs e)
+        // async void       => NUR BEI EVENTHANDLER nutzen
+        // async Task       => Alle Methoden ohne Rückgabe
+        // async Task<T>    => Alle Methoden MIT Rückgabe
+        private async void ButtonKlickMich_Click(object sender, RoutedEventArgs e)
         {
+            await IchWerfeEineException();
+
+            MessageBox.Show("Start");
+
+            await MachEtwasInEinemTask(); // .ConfigureAwait(false); // => Kontextwechsel auf UI-Thread wird verhindert -> man arbeitet mit dem Thread von dem vorherigen Task gleich weiter (z.B. Performance?)
+
+            textBoxEingabe.Text = "ICH BIN FERTIG";
+
+            string uhrzeit = TaskMitErgebnis().Result; // synchron
+            string uhrzeit2 = await TaskMitErgebnis(); // asynchron
+
             MessageBox.Show("Ende");
         }
 
-        public event EventHandler TaskBeendetEvent;
-
-        private void ButtonKlickMich_Click(object sender, RoutedEventArgs e)
+        private Task IchWerfeEineException()
         {
-            MessageBox.Show("Start");
-
-            MachEtwasInEinemTask();
-
-            //MessageBox.Show("Ende");
+            return Task.Run(() =>
+            {
+                Task.Delay(3000);
+                throw new ArgumentException();
+            });
         }
 
         private Task MachEtwasInEinemTask()
@@ -53,7 +63,15 @@ namespace Async_Await_Demo
                     Dispatcher.Invoke(() => progressBarWert.Value = i);
                     Thread.Sleep(100);
                 }
-                TaskBeendetEvent?.Invoke(this, EventArgs.Empty);
+            });
+        }
+
+        private Task<string> TaskMitErgebnis()
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(3000);
+                return DateTime.Now.ToLongTimeString();
             });
         }
     }
