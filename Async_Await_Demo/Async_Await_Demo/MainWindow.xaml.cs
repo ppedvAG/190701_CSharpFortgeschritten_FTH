@@ -24,7 +24,15 @@ namespace Async_Await_Demo
         public MainWindow()
         {
             InitializeComponent();
+            TaskBeendetEvent += Callback;
         }
+
+        private void Callback(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ende");
+        }
+
+        public event EventHandler TaskBeendetEvent;
 
         private void ButtonKlickMich_Click(object sender, RoutedEventArgs e)
         {
@@ -32,12 +40,12 @@ namespace Async_Await_Demo
 
             MachEtwasInEinemTask();
 
-            MessageBox.Show("Ende");
+            //MessageBox.Show("Ende");
         }
 
-        private void MachEtwasInEinemTask()
+        private Task MachEtwasInEinemTask()
         {
-            Task t1 = Task.Run(() =>
+            return Task.Run(() =>
             {
                 for (int i = 0; i <= 100; i++)
                 {
@@ -45,6 +53,7 @@ namespace Async_Await_Demo
                     Dispatcher.Invoke(() => progressBarWert.Value = i);
                     Thread.Sleep(100);
                 }
+                TaskBeendetEvent?.Invoke(this, EventArgs.Empty);
             });
         }
     }
