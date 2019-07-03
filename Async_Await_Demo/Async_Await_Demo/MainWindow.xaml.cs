@@ -24,14 +24,28 @@ namespace Async_Await_Demo
         public MainWindow()
         {
             InitializeComponent();
+            buttonKlickMich.Click += NochEtwas;
         }
+
+        private async void NochEtwas(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(3000);
+            MessageBox.Show("Ich mache nochetwas");
+        }
+
         // async void       => NUR BEI EVENTHANDLER nutzen
         // async Task       => Alle Methoden ohne Rückgabe
         // async Task<T>    => Alle Methoden MIT Rückgabe
         private async void ButtonKlickMich_Click(object sender, RoutedEventArgs e)
         {
-            await IchWerfeEineException();
+            try
+            {
+                await IchWerfeEineException();
+            }
+            catch (Exception)
+            {
 
+            }
             MessageBox.Show("Start");
 
             await MachEtwasInEinemTask(); // .ConfigureAwait(false); // => Kontextwechsel auf UI-Thread wird verhindert -> man arbeitet mit dem Thread von dem vorherigen Task gleich weiter (z.B. Performance?)
@@ -42,6 +56,7 @@ namespace Async_Await_Demo
             string uhrzeit2 = await TaskMitErgebnis(); // asynchron
 
             MessageBox.Show("Ende");
+            progressBarWert.Value = 0;
         }
 
         private Task IchWerfeEineException()
@@ -49,7 +64,7 @@ namespace Async_Await_Demo
             return Task.Run(() =>
             {
                 Task.Delay(3000);
-                throw new ArgumentException();
+                // throw new ArgumentException();
             });
         }
 

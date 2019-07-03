@@ -8,7 +8,18 @@
         Title="Async und Await" Height="206.184" Width="265.724">
     <StackPanel Margin="10">
         <TextBox x:Name="textBoxEingabe" />
-        <Button x:Name="buttonKlickMich" Content="Klick mich !" Margin="0,25,0,0" Click="ButtonKlickMich_Click"/>
+        <Button x:Name="buttonKlickMich" Content="Klick mich !" Margin="0,25,0,0" Click="ButtonKlickMich_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=progressBarWert,Path=Value}" Value="0">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <ProgressBar x:Name="progressBarWert" Minimum="0" Maximum="100" Height="20" Margin="0,25"/>
     </StackPanel>
 </Window>
