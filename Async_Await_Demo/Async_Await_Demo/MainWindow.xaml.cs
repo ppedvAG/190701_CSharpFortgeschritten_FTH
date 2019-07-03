@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,28 @@ namespace Async_Await_Demo
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonKlickMich_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Start");
+
+            MachEtwasInEinemTask();
+
+            MessageBox.Show("Ende");
+        }
+
+        private void MachEtwasInEinemTask()
+        {
+            Task t1 = Task.Run(() =>
+            {
+                for (int i = 0; i <= 100; i++)
+                {
+                    // Zugriff auf das UI:
+                    Dispatcher.Invoke(() => progressBarWert.Value = i);
+                    Thread.Sleep(100);
+                }
+            });
         }
     }
 }
